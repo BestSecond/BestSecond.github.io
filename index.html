@@ -12,8 +12,8 @@
             padding: 20px;
         }
         .card {
-            width: 20vw; /* 카드 너비를 뷰포트 너비의 20%로 설정 */
-            height: 30vh; /* 카드 높이를 뷰포트 높이의 30%로 설정 */
+            width: 100px;
+            height: 150px;
             background-color: #ccc;
             border: 1px solid #aaa;
             border-radius: 10px;
@@ -21,7 +21,6 @@
             margin: 10px;
             cursor: pointer;
             position: relative;
-            overflow: hidden; /* 이미지가 카드 영역을 넘지 않도록 설정 */
         }
         .card.selected {
             border: 2px solid #ff5722;
@@ -31,7 +30,6 @@
             height: 100%;
             border-radius: 10px;
             display: none; /* Initially hidden */
-            object-fit: cover; /* 이미지 비율 유지 */
         }
         button {
             padding: 10px 20px;
@@ -48,15 +46,6 @@
         .result-card {
             margin: 10px;
             text-align: center;
-        }
-        @media (max-width: 600px) {
-            .card {
-                width: 30vw; /* 더 작은 화면에서는 카드 너비를 30%로 설정 */
-                height: 40vh; /* 높이를 40%로 설정 */
-            }
-            button {
-                font-size: 14px; /* 버튼 텍스트 크기 조정 */
-            }
         }
     </style>
 </head>
