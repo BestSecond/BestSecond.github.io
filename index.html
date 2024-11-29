@@ -103,13 +103,15 @@
                 }
             });
 
-            const imgBack = document.createElement('div');
-            imgBack.style.backgroundColor = '#ccc'; // 뒷면 색상
-            imgBack.style.width = '100%';
-            imgBack.style.height = '100%';
-            imgBack.style.borderRadius = '10px';
-            cardDiv.appendChild(imgBack);
-
+           
+            const imgBack = document.createElement('img'); // <div> 대신 <img> 요소 생성
+            imgBack.src = 'image/back.jpg'; // 카드 뒷면 이미지를 지정
+            imgBack.alt = '카드 뒷면'; // 대체 텍스트 설정
+            imgBack.style.width = '100%'; // 너비를 100%로 설정
+            imgBack.style.height = '100%'; // 높이를 100%로 설정
+            imgBack.style.borderRadius = '10px'; // 모서리를 둥글게 설정
+            cardDiv.appendChild(imgBack); // 카드 뒷면 이미지 추가
+            
             const imgFront = document.createElement('img');
             imgFront.src = card.image;
             imgFront.alt = card.name;
