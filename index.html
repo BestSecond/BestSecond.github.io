@@ -21,6 +21,7 @@
             margin: 10px;
             cursor: pointer;
             position: relative;
+            overflow: hidden; /* 카드가 넘치는 내용을 숨김 */
         }
         .card.selected {
             border: 2px solid #ff5722;
@@ -29,7 +30,18 @@
             width: 100%;
             height: 100%;
             border-radius: 10px;
-            display: none; /* Initially hidden */
+            position: absolute; /* 이미지 위치를 절대적으로 설정 */
+            top: 0;
+            left: 0;
+            transition: opacity 0.3s; /* 부드러운 전환 효과 */
+        }
+        .card img.back {
+            display: block; /* 뒷면 이미지는 기본적으로 보이도록 설정 */
+            opacity: 1; /* 뒷면은 완전히 보이도록 설정 */
+        }
+        .card img.front {
+            display: block; /* 앞면 이미지는 기본적으로 보이지 않도록 설정 */
+            opacity: 0; /* 앞면은 처음에 보이지 않도록 설정 */
         }
         button {
             padding: 10px 20px;
@@ -106,10 +118,14 @@
                 if (selectedCards.includes(index)) {
                     selectedCards = selectedCards.filter(i => i !== index);
                     cardDiv.classList.remove('selected');
+                    imgBack.style.opacity = 1; // 뒷면 보이도록 설정
+                    imgFront.style.opacity = 0; // 앞면 숨김
                 } else {
                     if (selectedCards.length < 3) {
                         selectedCards.push(index);
                         cardDiv.classList.add('selected');
+                        imgBack.style.opacity = 0; // 뒷면 숨김
+                        imgFront.style.opacity = 1; // 앞면 보이도록 설정
                     }
                 }
             });
@@ -117,6 +133,7 @@
             const imgBack = document.createElement('img'); // <div> 대신 <img> 요소 생성
             imgBack.src = "image/back.jpg"; // 카드 뒷면 이미지를 지정
             imgBack.alt = '카드 뒷면'; // 대체 텍스트 설정
+            imgBack.classList.add('back'); // 뒷면 이미지 클래스 추가
             imgBack.style.width = '100%'; // 너비를 100%로 설정
             imgBack.style.height = '100%'; // 높이를 100%로 설정
             imgBack.style.borderRadius = '10px'; // 모서리를 둥글게 설정
@@ -125,7 +142,11 @@
             const imgFront = document.createElement('img');
             imgFront.src = card.image;
             imgFront.alt = card.name;
-            cardDiv.appendChild(imgFront);
+            imgFront.classList.add('front'); // 앞면 이미지 클래스 추가
+            imgFront.style.width = '100%'; // 너비를 100%로 설정
+            imgFront.style.height = '100%'; // 높이를 100%로 설정
+            imgFront.style.borderRadius = '10px'; // 모서리를 둥글게 설정
+            cardDiv.appendChild(imgFront); // 카드 앞면 이미지 추가
             cardsContainer.appendChild(cardDiv);
         });
 
@@ -135,18 +156,4 @@
 
             if (selectedCards.length === 0) {
                 resultDiv.innerText = "카드를 선택하세요.";
-                return;
-            }
-
-            selectedCards.forEach(index => {
-                const card = cards[index];
-                const cardResult = document.createElement('div');
-                cardResult.className = 'result-card'; // 가로로 나열하기 위한 클래스
-                cardResult.innerHTML = `<h3>${card.name}</h3><img src="${card.image}" style="width: 100px; height: 150px;"><p>${card.meaning}</p>`;
-                resultDiv.appendChild(cardResult);
-            });
-        });
-    </script>
-
-</body>
-</html>
+                return
