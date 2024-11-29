@@ -39,6 +39,13 @@
         }
         #result {
             margin-top: 20px;
+            display: flex; /* Use flexbox for horizontal layout */
+            justify-content: center; /* Center items */
+            flex-wrap: wrap; /* Allow wrapping to next line */
+        }
+        .result-card {
+            margin: 10px;
+            text-align: center;
         }
     </style>
 </head>
@@ -122,6 +129,7 @@
             selectedCards.forEach(index => {
                 const card = cards[index];
                 const cardResult = document.createElement('div');
+                cardResult.className = 'result-card'; // 가로로 나열하기 위한 클래스
                 cardResult.innerHTML = `<h3>${card.name}</h3><img src="${card.image}" style="width: 100px; height: 150px;"><p>${card.meaning}</p>`;
                 resultDiv.appendChild(cardResult);
             });
