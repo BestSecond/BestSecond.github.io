@@ -11,10 +11,14 @@
             background-color: #f0f0f0;
             padding: 20px;
         }
+     
+
         .card {
             width: 100px;
             height: 150px;
-            background-color: #aaa;
+            background-image: url('image/back.jpg'); /* 배경 이미지 설정 */
+            background-size: cover; /* 이미지가 카드 전체를 덮도록 설정 */
+            background-position: center; /* 이미지의 위치를 중앙으로 설정 */
             border: 1px solid #aaa;
             border-radius: 10px;
             display: inline-block;
@@ -22,6 +26,9 @@
             cursor: pointer;
             position: relative;
         }
+
+
+        
         .card.selected {
             border: 2px solid #ff5722;
         }
