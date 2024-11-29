@@ -82,6 +82,17 @@
             { name: "세계", meaning: "완성과 성취", image: "image/22.jpg" },
         ];
 
+        // Fisher-Yates Shuffle 알고리즘을 사용하여 배열을 무작위로 섞는 함수
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // 카드 배열을 랜덤하게 섞기
+        shuffle(cards);
+
         const cardsContainer = document.getElementById('cardsContainer');
         let selectedCards = [];
 
@@ -103,7 +114,6 @@
                 }
             });
 
-           
             const imgBack = document.createElement('img'); // <div> 대신 <img> 요소 생성
             imgBack.src = 'image/back.png'; // 카드 뒷면 이미지를 지정
             imgBack.alt = '카드 뒷면'; // 대체 텍스트 설정
